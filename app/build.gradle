@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.tencent:mmkv:1.2.10'
     // json
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //BottomBar
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

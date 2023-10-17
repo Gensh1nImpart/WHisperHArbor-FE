@@ -3,6 +3,7 @@ package com.example.whha;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,9 +54,9 @@ public class Login extends AppCompatActivity {
                                     if(loginSuccess){
                                         TokenTools.mmkv.encode("username_cache", tpUsername);
                                         Log.i(TAG, "run: successful");
-                                        Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
-                                        //
-                                        finish();
+                                        Toast.makeText(Login.this, "登录成功", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(Login.this, MainActivity.class));
+//                                        finish();
                                     }else{
                                         Toast.makeText(Login.this, "登录失败!", Toast.LENGTH_SHORT).show();
                                     }
@@ -97,5 +98,16 @@ public class Login extends AppCompatActivity {
         if(TokenTools.mmkv.containsKey("username_cache")){
             username.setText(TokenTools.mmkv.getString("username_cache", ""));
         }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
