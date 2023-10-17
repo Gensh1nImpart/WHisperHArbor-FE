@@ -1,5 +1,6 @@
 package com.example.whha;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,8 +51,11 @@ public class Login extends AppCompatActivity {
                                 public void run() {
 
                                     if(loginSuccess){
+                                        TokenTools.mmkv.encode("username_cache", tpUsername);
                                         Log.i(TAG, "run: successful");
                                         Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
+                                        //
+                                        finish();
                                     }else{
                                         Toast.makeText(Login.this, "登录失败!", Toast.LENGTH_SHORT).show();
                                     }
@@ -70,6 +74,13 @@ public class Login extends AppCompatActivity {
                 loginThread.start();
             }
         });
+        toRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
+            }
+        });
     }
     private void init(){
         username = findViewById(R.id.username_edit);
@@ -78,6 +89,9 @@ public class Login extends AppCompatActivity {
         toRegister = findViewById(R.id.login_register_button);
         usernameWarning = findViewById(R.id.username_edit_warning);
         passwdWarning = findViewById(R.id.passwd_edit_warning);
+        if(TokenTools.mmkv.contains("username_cache")){
+            username.setText(TokenTools.mmkv.getString("username_cache", ""));
+        }
     }
     private void onInitUsername(){
         if(TokenTools.mmkv.containsKey("username_cache")){

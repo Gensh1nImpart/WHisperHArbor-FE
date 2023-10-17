@@ -1,11 +1,11 @@
 package com.example.whha.utils;
 
 import android.util.Log;
+import com.example.whha.Register;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.tencent.mmkv.MMKV;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -89,7 +89,7 @@ public class TokenTools {
                         return true;
                     }
                 }
-            }
+            }else return false;
         }catch (Exception e){
             Log.i(TAG, "Login: ", e);
         }finally {
@@ -98,5 +98,50 @@ public class TokenTools {
             }
         }
         return false;
+    }
+
+    public static String register(String username, String password, String nickname) throws Exception{
+        Log.i(TAG, "register: ");
+        JSONObject toRegisterJson = new JSONObject();
+        URL url;
+        HttpURLConnection connection = null;
+        try {
+            toRegisterJson.put("account", username);
+            toRegisterJson.put("passwd", password);
+            toRegisterJson.put("nickname", nickname);
+            String api = "http://10.0.2.2:8000/auth/register";
+            url = new URL(api);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            connection.setDoOutput(true);
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            writer.write(toRegisterJson.toString());
+            writer.flush();
+            connection.connect();
+            int respondedCode = connection.getResponseCode();
+            if (respondedCode == 200){
+                InputStream inputStream = connection.getInputStream();
+                JsonParser jsonParser = new JsonParser();
+                JsonElement rootElement = jsonParser.parse(new InputStreamReader(inputStream));
+                if(rootElement.isJsonObject()){
+                    JsonObject jsonObject = rootElement.getAsJsonObject();
+                    Log.i(TAG, "ExistToken: " + jsonObject);
+                    if(jsonObject.get("code").getAsInt() == 200){
+                        return "注册成功";
+                    }else{
+                        return jsonObject.get("message").getAsString();
+                    }
+                }
+            }else return "注册失败";
+        }catch (Exception e){
+            Log.i(TAG, "Register: ", e);
+            return "注册失败";
+        }finally {
+            if(connection != null){
+                connection.disconnect();
+            }
+        }
+        return "注册失败";
     }
 }

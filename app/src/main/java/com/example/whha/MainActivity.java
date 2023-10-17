@@ -17,32 +17,32 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_main);
         MMKV.initialize(this);
         tokentools = new TokenTools();
-        Thread isLogin = new Thread(new Runnable() {
-            @Override
-            public void run() {
-//                isLoginNow = TokenTools.ExistToken();
-                if(!TokenTools.ExistToken()){
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "还未登录", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, Login.class);
-                            startActivity(intent);
-                        }
-                    });
-                }else{
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "已经登录", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+//        Thread isLogin = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+////                isLoginNow = TokenTools.ExistToken();
+//                if(!TokenTools.ExistToken()){
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(MainActivity.this, "还未登录", Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(MainActivity.this, Login.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                }else{
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(MainActivity.this, "已经登录", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//
+//                }
+//            }
+//        });
+//        isLogin.start();
 
-                }
-            }
-        });
-        isLogin.start();
-
-
+        startActivity(new Intent(MainActivity.this, Login.class));
     }
 }
