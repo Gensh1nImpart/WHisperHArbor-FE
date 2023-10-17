@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.example.whha'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.whha"
         minSdk 28
-        targetSdk 33
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -29,7 +29,10 @@ android {
 }
 
 dependencies {
-
+    // mmkv
+    implementation 'com.tencent:mmkv:1.2.10'
+    // json
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
