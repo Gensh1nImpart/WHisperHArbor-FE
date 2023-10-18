@@ -1,5 +1,6 @@
 package com.example.whha;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -36,6 +37,7 @@ public class Register extends AppCompatActivity {
             nickname.setText("");
         });
         register.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 warning_nickname.setText("");
@@ -57,10 +59,25 @@ public class Register extends AppCompatActivity {
                         warning_username.setText("不能为空");
                     return;
                 }
+                boolean flag = true;
+                if(!tpUsername.matches("^[a-zA-Z0-9]{6,12}$")){
+                    flag = false;
+                    warning_nickname.setText("用户名应该6-12位，仅包含数字的字母!");
+                }
+                if(!tpPasswd.matches("^[a-zA-Z0-9]{6,12}$")){
+                    flag = false;
+                    warning_nickname.setText("密码应该6-12位，仅包含数字的字母!");
+                }
                 if(!tpPasswd.equals(tpPasswd2)) {
                     warning_passwd2.setText("两次密码不一致");
-                    return;
+                    flag = false;
                 }
+                if(!tpNickname.matches("^.{1,8}$")){
+                    flag = false;
+                    warning_nickname.setText("用户名应该1-8位");
+                }
+                if(!flag)
+                    return;
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {

@@ -18,29 +18,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity {
     String TAG = "MainActivity";
     TokenTools tokentools;
     List<Fragment> fragmentList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MMKV.initialize(this);
-        tokentools = new TokenTools();
-        TokenTools.mmkv.removeValueForKey("token");
-        Thread testLogin = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                checkLogin();
-            }
-        });
-        testLogin.start();
-        try{
-            testLogin.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        TokenTools.mmkv.removeValueForKey("token");
+
         setContentView(R.layout.activity_main);
         ViewPager viewPager = findViewById(R.id.main_vp);
         BottomNavigationView bottomNavigationView = findViewById(R.id.main_bnv);
@@ -62,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         bottomNavigationView.setSelectedItemId(R.id.bottom_write);
                         break;
-                    case 3:
+                    case 2:
                         bottomNavigationView.setSelectedItemId(R.id.bottom_me);
                 }
             }
@@ -94,33 +83,7 @@ public class MainActivity extends AppCompatActivity {
         InformationFragment informationFragment = InformationFragment.newInstance("我的", "");
         fragmentList.add(informationFragment);
     }
-    public void checkLogin(){
-        Thread isLogin = new Thread(new Runnable() {
-            @Override
-            public void run() {
-//                isLoginNow = TokenTools.ExistToken();
-                if(!TokenTools.ExistToken()){
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "还未登录", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, Login.class);
-                            startActivity(intent);
-                        }
-                    });
-                }else{
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "已经登录", Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
-                }
-            }
-        });
-        isLogin.start();
-    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK) {

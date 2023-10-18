@@ -32,6 +32,7 @@
         <TextView
                 android:id="@+id/register_username_edit_warning"
                 android:layout_width="wrap_content"
+                android:textSize="5dp"
                 android:textColor="@color/design_default_color_error"
                 android:layout_height="wrap_content"/>
         <!-- password -->
@@ -39,7 +40,7 @@
                 android:id="@+id/register_password_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:text="密        码"
 
         />
@@ -53,6 +54,7 @@
         <TextView
                 android:id="@+id/register_passwd_edit_warning"
                 android:layout_width="wrap_content"
+                android:textSize="5dp"
                 android:textColor="@color/design_default_color_error"
                 android:layout_height="wrap_content"/>
         <!-- confirm password -->
@@ -60,7 +62,7 @@
                 android:id="@+id/register_confirmpassword_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:text="确认密码"
 
         />
@@ -74,6 +76,7 @@
         <TextView
                 android:id="@+id/register_confirmpasswd_edit_warning"
                 android:layout_width="wrap_content"
+                android:textSize="5dp"
                 android:textColor="@color/design_default_color_error"
                 android:layout_height="wrap_content"/>
         <!-- nickname -->
@@ -81,7 +84,7 @@
                 android:id="@+id/register_nickname_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:text="昵        称"
 
         />
@@ -95,7 +98,8 @@
         />
         <TextView
                 android:id="@+id/register_nickname_edit_warning"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:textSize="5dp"
                 android:textColor="@color/design_default_color_error"
                 android:layout_height="wrap_content"/>
         <!-- reset -->
