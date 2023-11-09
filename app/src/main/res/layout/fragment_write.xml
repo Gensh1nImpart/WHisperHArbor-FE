@@ -1,17 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
 
-              android:orientation="vertical" >
+    <EditText android:layout_width="0dp" android:layout_height="0dp"
+              android:id="@+id/publish_edittext"
+              android:hint="请输入您的内容"
+              android:inputType="textMultiLine"
+              android:lines="5"
+              android:scrollbars="vertical"
+              android:background="@drawable/edittext_border"
+              android:layout_marginTop="40dp"
+              android:layout_marginBottom="55dp" app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintBottom_toBottomOf="@+id/publish_radiogroup"
+              android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+    <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/publish_radiogroup"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="@+id/publish_edittext"
+            app:layout_constraintBottom_toBottomOf="parent">
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:text="公开"
+                     android:id="@+id/publish_true"
+                     tools:layout_editor_absoluteY="348dp"/>
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:text="不公开"
+                     android:id="@+id/publish_false"
+                     tools:layout_editor_absoluteY="348dp"/>
+    </RadioGroup>
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/publish_button"
             android:text="发表"
-            android:textSize="50sp"
-            android:gravity="center"
-    />
+            android:layout_marginTop="7dp"
+            app:layout_constraintTop_toBottomOf="@+id/publish_edittext" android:layout_marginEnd="96dp"
+            app:layout_constraintEnd_toEndOf="@+id/publish_edittext"/>
+    <TextView
+            android:text=""
 
-</LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/publish_textview"
+            android:textColor="@color/design_default_color_error"
+            app:layout_constraintStart_toStartOf="@+id/publish_radiogroup"
+            android:layout_marginTop="31dp" app:layout_constraintTop_toBottomOf="@+id/publish_radiogroup"
+            app:layout_constraintEnd_toStartOf="@+id/publish_radiogroup"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
