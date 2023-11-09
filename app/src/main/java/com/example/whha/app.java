@@ -27,7 +27,6 @@ public class app extends AppCompatActivity {
         Thread isLogin = new Thread(new Runnable() {
             @Override
             public void run() {
-//                isLoginNow = TokenTools.ExistToken();
                 if(!TokenTools.ExistToken()){
                     runOnUiThread(new Runnable() {
                         @Override
@@ -44,7 +43,7 @@ public class app extends AppCompatActivity {
                         public void run() {
                             Toast.makeText(app.this, "已经登录", Toast.LENGTH_SHORT).show();
                             finish();
-                            startActivity(new Intent(app.this, Login.class));
+                            startActivity(new Intent(app.this, MainActivity.class));
                         }
                     });
 

@@ -6,12 +6,20 @@
 
               android:orientation="vertical" >
 
-    <TextView
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="首页"
-            android:textSize="50sp"
-            android:gravity="center"
-    />
+            android:id="@+id/smart_refresh_layout">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recycler_view">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 </LinearLayout>
