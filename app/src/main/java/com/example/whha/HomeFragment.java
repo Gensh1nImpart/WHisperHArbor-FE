@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment {
                                 @Override
                                 public void run() {
                                     adapter.notifyDataSetChanged();
-                                    Toast.makeText(getContext(), "刷新成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "加载成功", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }else{

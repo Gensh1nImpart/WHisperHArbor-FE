@@ -46,8 +46,8 @@ public class GetPostList {
                     JsonObject postObject = postElement.getAsJsonObject();
                     String content = postObject.get("content").getAsString();
                     String nickname = postObject.get("nickname").getAsString();
-
-                    PublicPost post = new PublicPost(nickname, content);
+                    String time = postObject.get("time").getAsString();
+                    PublicPost post = new PublicPost(nickname, content, time);
                     publicPosts.add(post);
                 }
                 Log.i(TAG, "getPublicPost: " + publicPosts);

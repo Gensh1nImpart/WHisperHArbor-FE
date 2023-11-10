@@ -15,7 +15,8 @@ import java.net.URL;
 
 public class PublishPost {
     public static boolean Publish(String content, boolean vis){
-        String api = "http://10.0.2.2:8000/v1/api/post";
+        String api = "http://10.0.2.2" +
+                ":8000/v1/api/post";
         JSONObject toPublish = new JSONObject();
         URL url;
         HttpURLConnection connection = null;

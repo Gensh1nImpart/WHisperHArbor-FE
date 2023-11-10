@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.Author.setText(data.get(position).getAuthor());
         holder.Content.setText(data.get(position).getContent());
-
+        holder.Time.setText((data.get(position).getTime()));
     }
 
     @Override
@@ -38,11 +38,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        TextView Author, Content;
+        TextView Author, Content, Time;
         public RecyclerViewHolder(View v) {
             super(v);
             Author = v.findViewById(R.id.items_author);
             Content = v.findViewById(R.id.items_content);
+            Time = v.findViewById(R.id.items_time);
         }
     }
 }
