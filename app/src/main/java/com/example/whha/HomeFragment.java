@@ -27,7 +27,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
- */
+ */ 
 public class HomeFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

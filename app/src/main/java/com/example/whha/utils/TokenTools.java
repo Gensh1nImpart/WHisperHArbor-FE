@@ -100,7 +100,7 @@ public class TokenTools {
         return false;
     }
 
-    public static String register(String username, String password, String nickname) throws Exception{
+    public static String register(String username, String password, String nickname, String mail) throws Exception{
         Log.i(TAG, "register: ");
         JSONObject toRegisterJson = new JSONObject();
         URL url;
@@ -109,6 +109,7 @@ public class TokenTools {
             toRegisterJson.put("account", username);
             toRegisterJson.put("passwd", password);
             toRegisterJson.put("nickname", nickname);
+            toRegisterJson.put("mail", mail);
             String api = "http://10.0.2.2:8000/auth/register";
             url = new URL(api);
             connection = (HttpURLConnection) url.openConnection();

@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
 
-              android:orientation="vertical" >
+                                                   android:orientation="vertical">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="我的"
-            android:textSize="50sp"
-            android:gravity="center"
-    />
+    <LinearLayout android:layout_width="match_parent"
+                                                       android:layout_height="wrap_content"
+    >
+        <ImageView android:layout_width="80dp" android:layout_height="80dp"
+                   android:src="@drawable/personal" tools:layout_editor_absoluteY="32dp"
+                   tools:layout_editor_absoluteX="36dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/my_Name"
+                  android:textSize="30dp"
+                  android:text="name" tools:layout_editor_absoluteY="32dp" tools:layout_editor_absoluteX="139dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/my_Account"
+                  android:text="WHHA ID: " tools:layout_editor_absoluteY="93dp" tools:layout_editor_absoluteX="139dp"/>
+
+    </LinearLayout>
+    <TextView android:layout_width="match_parent" android:layout_height="5dp"
+              android:background="@color/design_default_color_background" tools:layout_editor_absoluteY="129dp"
+              tools:layout_editor_absoluteX="-16dp"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  tools:layout_editor_absoluteY="154dp" tools:layout_editor_absoluteX="0dp">
+
+        <TextView android:layout_width="match_parent" android:layout_height="2dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:background="@color/black" tools:layout_editor_absoluteY="129dp"
+                  tools:layout_editor_absoluteX="-16dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

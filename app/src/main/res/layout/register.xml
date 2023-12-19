@@ -102,6 +102,29 @@
                 android:textSize="5dp"
                 android:textColor="@color/design_default_color_error"
                 android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/register_mail_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="邮        箱"
+
+        />
+
+        <EditText
+                android:id="@+id/register_mail_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入您的邮箱"
+                android:inputType="text"
+        />
+        <TextView
+                android:id="@+id/register_mail_edit_warning"
+                android:layout_width="match_parent"
+                android:textSize="5dp"
+                android:textColor="@color/design_default_color_error"
+                android:layout_height="wrap_content"/>
         <!-- reset -->
         <Button
                 android:id="@+id/register_reset_button"

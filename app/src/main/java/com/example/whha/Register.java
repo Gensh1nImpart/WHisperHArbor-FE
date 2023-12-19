@@ -13,17 +13,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.whha.utils.TokenTools;
 
-public class Register extends AppCompatActivity {
+public class Register extends LoadTools{
     EditText username;
     EditText passwd;
     EditText passwd2;
     EditText nickname;
+
+    EditText mail;
     Button register;
     Button reset;
     TextView warning_username;
     TextView warning_passwd;
     TextView warning_passwd2;
     TextView warning_nickname;
+    TextView warning_mail;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class Register extends AppCompatActivity {
             passwd.setText("");
             passwd2.setText("");
             nickname.setText("");
+            mail.setText("");
         });
         register.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -44,11 +48,13 @@ public class Register extends AppCompatActivity {
                 warning_passwd2.setText("");
                 warning_passwd.setText("");
                 warning_username.setText("");
+                warning_mail.setText("");
                 String tpUsername = username.getText().toString();
                 String tpPasswd = passwd.getText().toString();
                 String tpPasswd2 = passwd2.getText().toString();
                 String tpNickname = nickname.getText().toString();
-                if(tpNickname.isEmpty() || tpPasswd2.isEmpty() || tpPasswd.isEmpty() || tpUsername.isEmpty()){
+                String tpMail = mail.getText().toString();
+                if(tpMail.isEmpty() || tpNickname.isEmpty() || tpPasswd2.isEmpty() || tpPasswd.isEmpty() || tpUsername.isEmpty()){
                     if(tpNickname.isEmpty())
                         warning_nickname.setText("不能为空");
                     if(tpPasswd2.isEmpty())
@@ -57,6 +63,8 @@ public class Register extends AppCompatActivity {
                         warning_passwd.setText("不能为空");
                     if(tpUsername.isEmpty())
                         warning_username.setText("不能为空");
+                    if(tpMail.isEmpty())
+                        warning_mail.setText("不能为空");
                     return;
                 }
                 boolean flag = true;
@@ -76,18 +84,24 @@ public class Register extends AppCompatActivity {
                     flag = false;
                     warning_nickname.setText("用户名应该1-8位");
                 }
+                if(!tpMail.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")){
+                    flag = false;
+                    warning_mail.setText("请输入正确的邮箱");
+                }
                 if(!flag)
                     return;
+                Register.super.showLoadingDialog();
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try{
-                            String registermsg = TokenTools.register(tpUsername, tpPasswd, tpNickname);
+                            String registermsg = TokenTools.register(tpUsername, tpPasswd, tpNickname, tpMail);
                             if(registermsg.equals("注册成功")){
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Register.this, "注册成功", Toast.LENGTH_SHORT).show();
+                                        Register.super.dismissLoadingDialog();
+                                        Toast.makeText(Register.this, "注册成功, 请前往邮箱进行验证", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Register.this, Login.class));
                                         finish();
                                     }
@@ -96,7 +110,9 @@ public class Register extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        Register.super.dismissLoadingDialog();
                                         Toast.makeText(Register.this, registermsg, Toast.LENGTH_SHORT).show();
+
                                     }
                                 });
                             }
@@ -104,7 +120,9 @@ public class Register extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    Register.super.dismissLoadingDialog();
                                     Toast.makeText(Register.this, "注册失败!" + e, Toast.LENGTH_SHORT).show();
+
                                 }
                             });
                         }
@@ -120,12 +138,14 @@ public class Register extends AppCompatActivity {
         passwd = findViewById(R.id.register_password_edit);
         passwd2 = findViewById(R.id.register_confirmpassword_edit);
         nickname = findViewById(R.id.register_nickname_edit);
+        mail = findViewById(R.id.register_mail_edit);
         register = findViewById(R.id.register_register_button);
         reset = findViewById(R.id.register_reset_button);
         warning_username = findViewById(R.id.register_username_edit_warning);
         warning_passwd = findViewById(R.id.register_passwd_edit_warning);
         warning_passwd2 = findViewById(R.id.register_confirmpasswd_edit_warning);
         warning_nickname = findViewById(R.id.register_nickname_edit_warning);
+        warning_mail = findViewById(R.id.register_mail_edit_warning);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event){
